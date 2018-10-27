@@ -1,3 +1,4 @@
+var mongoose = require('mongoose');
 var passport = require('passport');
 var GitHubStrategy = require('passport-github2').Strategy;
 
@@ -11,17 +12,22 @@ passport.use(new GitHubStrategy({
     },
     function(accessToken, refreshToken, profile, done) {
     
+        console.log( profile )
+
         var searchQuery = {
-            "name": profile.displayName
+            "name" : profile.displayName
         };
     
         var updates = {
-            "name": profile.displayName,
-            "id": profile.id
+            "name"            : profile.displayName,
+            "gh_id"           : profile.id,
+            "gh_login"        : profile._json.login,
+            "gh_avatar_url"   : profile._json.avatar_url,
+            "gh_bio"          : profile._json.bio
         };
-    
+
         var options = {
-            "upsert": true
+            "upsert" : true
         };
     
         // update the user if exists or add a new user

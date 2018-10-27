@@ -12,6 +12,7 @@ var passport        = require('passport');
 
 var indexRouter     = require('./routes/index');
 var usersRouter     = require('./routes/users');
+var homeRouter      = require('./routes/home');
 
 var app = express();
 
@@ -20,6 +21,7 @@ const db_pwd      = encodeURIComponent( process.env.DB_PASSWORD );
 const db_host     = process.env.DB_HOST
 const db_database = process.env.DB_DATABASE
 const db_url      = `mongodb://${db_un}:${db_pwd}@${db_host}/${db_database}`;
+
 // connect to db
 mongoose.connect(db_url, { useNewUrlParser: true });
 
@@ -32,8 +34,6 @@ app.use(session({
     "resave"            : true,
     "saveUninitialized" : true
 }));
-app.use(passport.initialize());
-app.use(passport.session());
 
 app.use(favicon(__dirname + '/public/images/favicon.ico'));
 app.use(logger('dev'));
@@ -46,12 +46,13 @@ app.use(sassMiddleware({
     indentedSyntax: true, // true = .sass and false = .scss
     sourceMap: true
 }));
+app.use(passport.initialize());
+app.use(passport.session());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
-
-
+app.use('/home', homeRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

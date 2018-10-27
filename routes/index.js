@@ -15,20 +15,14 @@ router.get('/', function(req, res, next) {
     res.render('index', data);
 });
 
-router.get('/login', function(req, res, next) {
-  res.send('You need to register');
-});
-
-
-var passportGithub = require('../auth/github');
-
 router.get('/auth/github', passportGithub.authenticate('github', { scope: [ 'user:email' ] }));
 
 router.get('/auth/github/callback',
-    passportGithub.authenticate('github', { failureRedirect: '/login' }),
+    passportGithub.authenticate('github', { failureRedirect: '/' }),
     function(req, res) {
         // Successful authentication
-        res.json(req.user);
+        // res.json(req.user);
+        res.redirect('/home');
     });
 
 module.exports = router;

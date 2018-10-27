@@ -4,7 +4,7 @@
   "description": "Transparent tech jobs board for the Bristol, UK area",
   "main": "app.js",
   "scripts": {
-    "dev": "nodemon --delay 2500ms ./bin/www ",
+    "dev": "nodemon --delay 1500ms ./bin/www ",
     "start": "node ./bin/www",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
