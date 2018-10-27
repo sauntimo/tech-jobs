@@ -1,0 +1,16 @@
+extends layout
+
+block content
+
+    h1.display-4 Create a new job
+
+    form
+        .form-group
+            label( for="job-title" ) Job Title
+            input( 
+                type="text"
+                class="form-control"
+                aria-describedby="title-help"
+                placeholder="Enter job title"
+            )
+            small#title-help Try and be more specific than "web developer"
