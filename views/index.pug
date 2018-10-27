@@ -5,3 +5,11 @@ block content
         h1.display-4= title
         p.lead #{intro}
         p #{explanation}
+        a(
+            href="/auth/github"
+            class="btn btn-primary btn-large btn-dark login"
+        )
+            img(
+                src="/images/GitHub-Mark-Light-32px.png"
+            )
+            span #{cta_text}
