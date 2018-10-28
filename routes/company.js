@@ -163,7 +163,9 @@ router.get( '/search', helper.ensureAuthenticated, async function(req, res, next
 
 router.get( '/view/:company_id', helper.ensureAuthenticated, async function(req, res, next){
 
-    var data = {};
+    var data = {
+        "editable" : false
+    };
 
     // get company from the db
     var rst_company = await CompanyService.getCompany( req.params.company_id );
@@ -176,8 +178,13 @@ router.get( '/view/:company_id', helper.ensureAuthenticated, async function(req,
     data.company = rst_company.data[0];
     data.company.website = he.decode( data.company.website );
 
+    // if this user is an employee of the company that owns this job,
+    // they can edit it
+    if( data.company._id.equals( req.user.company_id ) ){
+        data.editable = true;
+    }
+
     res.render( 'company/view', data );
 })
-
 
 module.exports = router;

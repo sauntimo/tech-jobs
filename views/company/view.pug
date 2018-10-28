@@ -23,3 +23,17 @@ block content
     h4 Approximate Size
     p
         | #{company.size} employees   
+
+    h4 Available Jobs
+    p
+        a( href="/job/search/company/" + company._id )
+            | All job posts for #{company.name}
+
+    if editable
+        .card.p-3
+            h4.card-title Administration
+            p.card-text
+                | You are an employee of this company so you can edit it.
+            .d-inline
+                a.btn.btn-secondary( href="/company/edit/" )
+                    | Edit company profile

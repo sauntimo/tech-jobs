@@ -9,7 +9,6 @@ var CompanyService = require('../services/company');
 var JobService     = require('../services/job');
 var helper         = require('../lib/helper');
 
-
 const { body }         = require('express-validator/check');
 const { sanitizeBody } = require('express-validator/filter');
 
@@ -52,8 +51,6 @@ router.get( '/search', helper.ensureAuthenticated, async function(req, res, next
 
     var rst_jobs = await JobService.findJobs( query );
 
-    console.log( rst_jobs );
-
     if( !rst_jobs.success ){
         res.redirect( '/home' );
     }
@@ -63,6 +60,39 @@ router.get( '/search', helper.ensureAuthenticated, async function(req, res, next
     res.render( 'job/search', data );
 
 })
+
+router.get( '/search/company/:company_id', helper.ensureAuthenticated, async function(req, res, next){
+
+    var rst_company = await CompanyService.getCompany( req.params.company_id );
+
+    // redirect on fail TODO: feedback
+    if( !rst_company.success ){
+        res.redirect( '/home' )
+    }
+
+    var company = rst_company.data[0];
+
+    var query = { "company_id" : req.params.company_id };
+
+    var rst_jobs = await JobService.findJobs( query );
+
+    // redirect on fail TODO: feedback
+    if( !rst_jobs.success ){
+        res.redirect( '/home' );
+    }
+
+    var jobs = rst_jobs.data;
+
+    var data = {
+        title : 'Jobs at ' + company.name,
+        jobs,
+        company
+    };
+
+    res.render( 'job/search', data );
+
+})
+
 
 router.get( '/view/:job_id', helper.ensureAuthenticated, async function( req, res, next ){
 
@@ -100,7 +130,7 @@ router.get( '/view/:job_id', helper.ensureAuthenticated, async function( req, re
 
     // if this user is an employee of the company that owns this job,
     // they can edit it
-    if( job.company_id == req.user.company_id ){
+    if( job.company_id.equals( req.user.company_id ) ){
         data.editable = true;
     }
 
@@ -129,8 +159,6 @@ router.get('/edit/:job_id', helper.ensureAuthenticated, async function(req, res,
     };
 
     data.job.deadline = he.decode( job.deadline );
-
-    console.log( data );
 
     res.render('job/edit', data);
 });
@@ -179,18 +207,11 @@ router.post( '/new', helper.ensureAuthenticated, arr_validators, async function(
 
     var rst_company = await CompanyService.getCompany( req.body.company_id );
 
-    console.log( rst_company );
-
     if( !rst_company.success ){
         return res.redirect( '/home' );
     } 
 
     var company = rst_company.data[0];
-
-    // var company_oid = mongoose.Types.ObjectId( req.body.company_id );
-   
-    // console.log( 'company_id: ' + req.body.company_id );
-    // console.log( 'company_oid: ' + company_oid );
 
     Job.create( 
         {
@@ -206,7 +227,6 @@ router.post( '/new', helper.ensureAuthenticated, arr_validators, async function(
         },
         function ( err, job ){
             if( err ){
-                console.log( err )
                 res.redirect( '/job/new' )
             }
 
@@ -258,17 +278,11 @@ router.get( '/delete/:job_id', helper.ensureAuthenticated, async function( req, 
     var job = {};
     var rst_job = await JobService.getJob( req.params.job_id );
 
-    console.log( rst_job )
-
     if( !rst_job.success ){
         res.redirect( '/home' );
     }
     
     job = rst_job.data[0];
-
-    console.log( job.company_id );
-    console.log( req.user.company_id );
-    console.log( job.company_id.equals( req.user.company_id ) );
 
     if( !job.company_id.equals( req.user.company_id ) ){
         return res.redirect( '/home' );
@@ -278,10 +292,8 @@ router.get( '/delete/:job_id', helper.ensureAuthenticated, async function( req, 
         req.params.job_id,
         function( err, result ){
             if( err ){
-                console.log( err );
                 res.redirect( '/job/view/' + req.params.job_id );
             }
-            console.log( result );
             res.redirect( '/job/search' );
         }
     )

@@ -2,11 +2,12 @@ var express  = require('express');
 var router   = express.Router();
 var mongoose = require('mongoose');
 var User     = require('../models/user');
+var helper   = require('../lib/helper');
 
 const { body }         = require('express-validator/check');
 const { sanitizeBody } = require('express-validator/filter');
 
-router.get('/edit', function(req, res, next){
+router.get('/edit', helper.ensureAuthenticated, function(req, res, next){
 
     var data = {
         "user" : req.user
@@ -26,7 +27,7 @@ const arr_validators = [
         .escape()
 ];
 
-router.post( '/edit', arr_validators, function( req, res, next ){
+router.post( '/edit', helper.ensureAuthenticated, arr_validators, function( req, res, next ){
 
 
     User.findByIdAndUpdate( req.user._id, 
