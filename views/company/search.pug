@@ -1,0 +1,12 @@
+extends ../layout
+
+block content
+
+    h1 Companies
+
+    ul
+        each company, index in companies
+            li
+                a( href='/company/view/' + company._id )
+                    span.name.mr-1
+                        | #{company.name}

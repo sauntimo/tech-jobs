@@ -100,7 +100,7 @@ router.get( '/view/:job_id', helper.ensureAuthenticated, async function( req, re
 
     // if this user is an employee of the company that owns this job,
     // they can edit it
-    if( job.company_id = req.user.company_id ){
+    if( job.company_id == req.user.company_id ){
         data.editable = true;
     }
 

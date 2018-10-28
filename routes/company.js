@@ -5,6 +5,7 @@ var mongoose       = require('mongoose');
 var Company        = require('../models/company');
 var User           = require('../models/user');
 var CompanyService = require('../services/company');
+var helper         = require('../lib/helper');
 
 const { body }         = require('express-validator/check');
 const { sanitizeBody } = require('express-validator/filter');
@@ -30,7 +31,7 @@ router.get('/new', function(req, res, next){
     res.render('company/edit', data);
 });
 
-router.get('/edit', async function(req, res, next){
+router.get('/edit', helper.ensureAuthenticated, async function(req, res, next){
 
     var company = {};
     var rst_company = await CompanyService.getCompany( req.user.company_id );
@@ -84,7 +85,7 @@ const arr_validators = [
         .escape(),
 ];
 
-router.post( '/new', arr_validators, function( req, res, next ){
+router.post( '/new', helper.ensureAuthenticated, arr_validators, function( req, res, next ){
 
     Company.create( 
         {
@@ -119,7 +120,7 @@ router.post( '/new', arr_validators, function( req, res, next ){
 })
 
 
-router.post( '/edit', arr_validators, function( req, res, next ){
+router.post( '/edit', helper.ensureAuthenticated, arr_validators, function( req, res, next ){
 
     Company.findByIdAndUpdate(
         req.user.company_id, 
@@ -140,6 +141,42 @@ router.post( '/edit', arr_validators, function( req, res, next ){
             res.redirect( '/home' )
         }
     );
+})
+
+router.get( '/search', helper.ensureAuthenticated, async function(req, res, next){
+
+    var data = {};
+    var query = {};
+
+    // get company from the db
+    var rst_companies = await CompanyService.findCompanies( query );
+
+    // redirect on fail
+    if( !rst_companies.success ){
+        res.redirect( '/home' );
+    }
+
+    data.companies = rst_companies.data;
+
+    res.render( 'company/search', data );
+})
+
+router.get( '/view/:company_id', helper.ensureAuthenticated, async function(req, res, next){
+
+    var data = {};
+
+    // get company from the db
+    var rst_company = await CompanyService.getCompany( req.params.company_id );
+
+    // redirect on fail
+    if( !rst_company.success ){
+        res.redirect( '/home' );
+    }
+
+    data.company = rst_company.data[0];
+    data.company.website = he.decode( data.company.website );
+
+    res.render( 'company/view', data );
 })
 
 

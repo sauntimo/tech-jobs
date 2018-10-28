@@ -1,0 +1,25 @@
+
+extends ../layout
+
+block content
+
+    h1 #{company.name}
+
+
+    h4 Website
+    p
+        a( href=company.website )
+            | #{company.website}
+
+    h4 Address
+    p
+        address
+            | #{company.street_address}
+            br            
+            | #{company.city}
+            br            
+            | #{company.postcode}
+    
+    h4 Approximate Size
+    p
+        | #{company.size} employees   

@@ -44,6 +44,41 @@ module.exports = {
                 };
             }
         )
+    },
+
+    "findCompanies": async function( query ){
+
+        return new Promise( ( resolve, reject ) => {
+            
+            // get the Job
+            Company.find( query, ( error, companies ) => {
+                // if that failed, reject the promise with the error message
+                if( error ){ 
+                    reject( error.message );
+                }
+
+                // resolve with the company object
+                resolve( companies );
+            })
+
+        }).then(
+            // promise resolved
+            ( companies ) => {
+                return {
+                    "success" : true,
+                    "msg"     : 'Successfully retrieved companies',
+                    "data"    : companies
+                };
+            },
+            // promise rejected
+            ( error ) => {
+                return {
+                    "success" : false,
+                    "msg"     : 'Failed to get the company: ' + error,
+                    "data"    : []
+                };
+            }
+        )
     }
 
 }
