@@ -5,7 +5,7 @@ var passportGithub = require('../auth/github');
 var data = {
 	"title"       : "Tech Jobs Bristol",
 	"intro"       : "A transparent jobs board by developers for developers.",
-	"explanation" : `No recuitment agencies, ever. Just people with tech jobs 
+	"explanation" : `No recuitment agencies, ever. Just companies with tech jobs 
 		and people looking for them. Simple.`,
 	"cta_text"    : 'Log in with GitHub'
 };

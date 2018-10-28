@@ -4,15 +4,16 @@ block content
 
     h1.display-4 Edit Profile
     
-    form
+    form( action="/profile/edit" method="post" )
         
         .form-group
-            label( for="display-name" ) Display Name
+            label( for="display_name" ) Display Name
             input(
+                name="display_name"
                 type="text"
                 class="form-control"
-                id="display-name"
-                value=user.name
+                id="display_name"
+                value=user.display_name
             )
             small.form-text.text-muted
                 | How you prefer to be addressed
@@ -20,6 +21,7 @@ block content
         .form-group
             label( for="postcode" ) Postcode
             input(
+                name="postcode"
                 type="text"
                 class="form-control"
                 id="postcode"
