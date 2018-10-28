@@ -6,4 +6,7 @@ body {
   margin-right: 10px;
   border-right: 1px solid white; }
 
+.form_delete_job {
+  display: inline !important; }
+
 /*# sourceMappingURL=style.css.map */

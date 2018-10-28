@@ -21,8 +21,7 @@ passport.use(new GitHubStrategy({
             "gh_id"           : profile.id,
             "gh_login"        : profile._json.login,
             "gh_avatar_url"   : profile._json.avatar_url,
-            "gh_bio"          : profile._json.bio,
-            "display_name"    : profile.displayName
+            "gh_bio"          : profile._json.bio
         };
 
         var options = {

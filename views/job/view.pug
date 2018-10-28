@@ -1,0 +1,53 @@
+extends ../layout
+
+block content
+
+    h1 #{job.title}
+    h3 At #{job.company_name}
+
+    p Salary #{job.salary_min} - #{job.salary_max}
+
+    h4 Role description
+    p #{job.description}
+
+    h4 Desired experience
+    p #{job.experience}
+
+    h4 Technologies used
+    .tech
+        each item in job.tech.split( ',' )
+            span.badge.badge-secondary.p-2.mr-2.mb-2
+                | #{item}
+    
+    h4 Deadline for applications
+    p #{job.deadline}
+
+    .card.p-3.mb-3
+        h4.card-title Company Profile: #{company.name}
+        p.card-text
+            b Website: 
+            a( href=company.website )
+                | #{company.website}
+        p.card-text
+            b Approx. size: 
+            | #{company.size} employees
+        p.card-text
+            b Address:
+            address
+                | #{company.street_address}
+                br
+                | #{company.city}
+                br
+                | #{company.postcode}
+                
+
+    if editable
+        .card.p-3
+            h4.card-title Administration
+            p.card-text
+                | Because you are an employee of the company who is advertising this position, you can edit it.
+            .d-inline
+                a.btn.btn-secondary( href="/job/edit/" + job._id )
+                    | Edit job post
+                a.btn.btn-danger.ml-3( href="/job/delete/" + job._id )
+                    | Delete job post

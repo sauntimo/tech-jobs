@@ -2,7 +2,7 @@ extends ../layout
 
 block content
 
-    h1 Create a new job
+    h1 #{title}
 
     form( action=form_action method="post" )
         .form-group
@@ -43,8 +43,8 @@ block content
                 id="description"
                 name="description"
                 class="form-control"
-                value=job.description
             )
+                | #{job.description}
             small#description-help.form-text.text-muted
                 | Include an idea of the different kinds of work this role will undertake and the responsibilities the postholder will be expected to manage
 
@@ -54,8 +54,8 @@ block content
                 id="experience"
                 name="experience"
                 class="form-control"
-                value=job.experience
             )
+                | #{job.experience}
             small#experience-help.form-text.text-muted
                 | The kind of experience you are looking for in a candidate. Please, do not list "entry level" positions which require 3+ years of experience in your entire stack. 
 
@@ -99,3 +99,6 @@ block content
 
         button.btn.btn-primary( type="submit" )
             | #{form_verb} Job
+
+        a.btn.btn-secondary.ml-3( href="/job/view/" + job_id )
+            | Cancel
