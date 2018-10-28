@@ -1,0 +1,77 @@
+extends ../layout
+
+block content
+
+    h1.display-4 #{title}
+    
+    form( action=form_action method="post" )
+        
+        .form-group
+            label( for="name" ) Company name
+            input(
+                id="name"
+                name="name"
+                type="text"
+                class="form-control"
+                value=company.name
+            )
+
+        .form-group
+            label( for="website" ) Main company website
+            input(
+                id="website"
+                name="website"
+                type="text"
+                class="form-control"
+                value=company.website
+            )
+
+        .form-group
+            label( for="size" ) Approx number of employees
+            input(
+                name="size"
+                type="number"
+                class="form-control"
+                id="size"
+                value=company.size
+            )
+            small.form-text.text-muted
+                | Enter a number
+
+        .form-group
+            label( for="street_address" ) Street address
+            input(
+                name="street_address"
+                type="text"
+                class="form-control"
+                id="street_address"
+                value=company.street_address
+            )
+
+        .form-group
+            label( for="city" ) City
+            input(
+                name="city"
+                type="text"
+                class="form-control"
+                id="city"
+                value=company.city
+            )
+            small.form-text.text-muted
+                | This should be Bristol
+
+        .form-group
+            label( for="postcode" ) Postcode
+            input(
+                name="postcode"
+                type="text"
+                class="form-control"
+                id="postcode"
+                value=company.postcode
+            )
+            small.form-text.text-muted
+                | This should begin BS
+
+
+        button.btn.btn-primary( type="submit" )
+            | #{form_verb} Company

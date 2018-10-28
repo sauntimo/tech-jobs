@@ -10,7 +10,7 @@ block content
             h5.card-title
                 | Profile
             p.card-text
-                | Update your user profile, add skills and experience
+                | Update your user profile, add skills and experience.
             p.card-text    
                 a(
                     href="/profile/edit"
@@ -23,40 +23,42 @@ block content
             h5.card-title
                 | Jobs
             p.card-text
-                | Search posted jobs or create a new job post
+                | #{jobs_intro}
             p.card-text    
                 a(
                     href="/jobs/search"
                     class="btn btn-secondary mr-3"
                 )
                     | Search
-                a(
-                    href="/jobs/edit"
-                    class="btn btn-secondary mr-3"
-                )
-                    | Create
+                if has_company
+                    a(
+                        href="/jobs/edit"
+                        class="btn btn-secondary mr-3"
+                    )
+                        | Post a job at #{company.name}
 
     .card.mr-3.mb-3
         .card-body
             h5.card-title
                 | Company
             p.card-text
-                | Search local companies, create a new one or edit your own
+                | #{companies_intro}
             p.card-text    
                 a(
                     href="/company/search"
                     class="btn btn-secondary mr-3"
                 )
                     | Search
-                a(
-                    href="/company/edit"
-                    class="btn btn-secondary mr-3"
-                )
-                    | Create
-                if user.company_id && user.company_name
+                if !has_company
                     a(
-                        href="/company/edit/#{user.company_id}"
+                        href="/company/new"
                         class="btn btn-secondary mr-3"
                     )
-                        | Edit #{user.company_name}
+                        | Create
+                if has_company
+                    a(
+                        href="/company/edit/"
+                        class="btn btn-secondary mr-3"
+                    )
+                        | Edit #{company.name}
 

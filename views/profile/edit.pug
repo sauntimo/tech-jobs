@@ -9,10 +9,10 @@ block content
         .form-group
             label( for="display_name" ) Display Name
             input(
+                id="display_name"
                 name="display_name"
                 type="text"
                 class="form-control"
-                id="display_name"
                 value=user.display_name
             )
             small.form-text.text-muted
@@ -21,10 +21,10 @@ block content
         .form-group
             label( for="postcode" ) Postcode
             input(
+                id="postcode"
                 name="postcode"
                 type="text"
                 class="form-control"
-                id="postcode"
             )
             small.form-text.text-muted
                 | Used to calculate distance to a potential workplace
