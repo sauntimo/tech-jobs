@@ -9,7 +9,10 @@ var mongoose = require('mongoose');
 function isAuthenticated(req, res, next) {
 
     // if authenticated continue
-    if( req.user.hasOwnProperty( 'gh_id' ) ){
+    if( 
+        req.hasOwnProperty( 'user' ) &&
+        req.user.hasOwnProperty( 'gh_id' )
+    ){
         return next();
     }
 

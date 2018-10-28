@@ -10,4 +10,10 @@ html
         crossorigin="anonymous"
     )
   body
-    block content
+    block nav
+        .navbar.navbar-expand-lg.navbar-light.bg-light
+            a.navbar-brand( href="/home" )
+                | Tech Jobs Bristol
+
+    .container
+        block content

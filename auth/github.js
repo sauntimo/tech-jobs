@@ -12,8 +12,6 @@ passport.use(new GitHubStrategy({
     },
     function(accessToken, refreshToken, profile, done) {
     
-        console.log( profile )
-
         var searchQuery = {
             "name" : profile.displayName
         };

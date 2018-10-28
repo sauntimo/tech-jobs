@@ -1,0 +1,31 @@
+extends ../layout
+
+block content
+
+    h1.display-4 Edit Profile
+    
+    form
+        
+        .form-group
+            label( for="display-name" ) Display Name
+            input(
+                type="text"
+                class="form-control"
+                id="display-name"
+                value=user.name
+            )
+            small.form-text.text-muted
+                | How you prefer to be addressed
+
+        .form-group
+            label( for="postcode" ) Postcode
+            input(
+                type="text"
+                class="form-control"
+                id="postcode"
+            )
+            small.form-text.text-muted
+                | Used to calculate distance to a potential workplace
+
+        button.btn.btn-primary( type="submit" )
+            | Update Profile

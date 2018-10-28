@@ -15,13 +15,18 @@ router.get('/', function(req, res, next) {
     res.render('index', data);
 });
 
-router.get('/auth/github', passportGithub.authenticate('github', { scope: [ 'user:email' ] }));
+var passport_config = {
+    "scope"        : [ 'user:email' ],
+    "failureFlash" : "GitHub authentication failed"
+};
+
+router.get('/auth/github', passportGithub.authenticate('github', passport_config));
 
 router.get('/auth/github/callback',
     passportGithub.authenticate('github', { failureRedirect: '/' }),
+    
+    // Successful authentication
     function(req, res) {
-        // Successful authentication
-        // res.json(req.user);
         res.redirect('/home');
     });
 
