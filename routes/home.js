@@ -3,27 +3,9 @@ var router         = express.Router();
 var mongoose       = require('mongoose');
 var Company        = require('../models/company');
 var CompanyService = require('../services/company');
-
-/***
-  *    Check user is authenticated
- ***/
-function isAuthenticated(req, res, next) {
-
-    // if authenticated continue
-    if( 
-        req.hasOwnProperty( 'user' ) &&
-        req.user.hasOwnProperty( 'gh_id' )
-    ){
-        return next();
-    }
-
-    // otherwise redirect home
-    res.redirect('/');
-}
-
-
+var helper         = require('../lib/helper');
 /* GET home page. */
-router.get('/', async function(req, res, next) {
+router.get('/', helper.ensureAuthenticated, async function(req, res, next) {
 
     var data = {
         "user"            : req.user,

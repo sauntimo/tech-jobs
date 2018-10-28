@@ -1,0 +1,101 @@
+extends ../layout
+
+block content
+
+    h1 Create a new job
+
+    form( action=form_action method="post" )
+        .form-group
+            label( for="title" ) Job Title
+            input( 
+                id="title"
+                name="title"
+                type="text"
+                class="form-control"
+                value=job.title
+            )
+            small#title-help.form-text.text-muted
+                | Try and be more specific than "web developer"
+        
+        .form-group
+            label( for="salary_min" ) Salary range lower limit
+            input(
+                id="salary_min"
+                name="salary_min"
+                type="number"
+                class="form-control"
+                value=job.salary_min
+            )
+
+        .form-group
+            label( for="salary_max" ) salary range upper limit
+            input(
+                id="salary_max"
+                name="salary_max"
+                type="number"
+                class="form-control"
+                value=job.salary_max
+            )
+
+        .form-group
+            label( for="description" ) Role description
+            textarea( 
+                id="description"
+                name="description"
+                class="form-control"
+                value=job.description
+            )
+            small#description-help.form-text.text-muted
+                | Include an idea of the different kinds of work this role will undertake and the responsibilities the postholder will be expected to manage
+
+        .form-group
+            label( for="experience" ) Desired candidate experience
+            textarea( 
+                id="experience"
+                name="experience"
+                class="form-control"
+                value=job.experience
+            )
+            small#experience-help.form-text.text-muted
+                | The kind of experience you are looking for in a candidate. Please, do not list "entry level" positions which require 3+ years of experience in your entire stack. 
+
+
+        .form-group
+            label( for="tech" ) Technologies involved in this position
+            input( 
+                id="tech"
+                name="tech"
+                type="text"
+                class="form-control"
+                value=job.tech
+            )
+            small#tech-help.form-text.text-muted
+                | Enter comma separated technologies
+
+        .form-group
+            label( for="deadline" ) Deadline for applications
+            input( 
+                id="deadline"
+                name="deadline"
+                type="text"
+                class="form-control"
+                aria-describedby="title-help"
+                value=job.deadline
+            )
+        
+        input(
+            id="company_id"
+            name="company_id"
+            type="hidden"
+            value=job.company_id
+        )
+
+        input(
+            id="company_name"
+            name="company_name"
+            type="hidden"
+            value=job.company_name
+        )
+
+        button.btn.btn-primary( type="submit" )
+            | #{form_verb} Job

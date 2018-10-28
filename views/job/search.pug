@@ -1,0 +1,15 @@
+extends ../layout
+
+block content
+
+    h1 Jobs
+
+    ul
+        each job, index in jobs
+            li
+                a( href='/job/view/' + job._id )
+                    span.title.mr-1
+                        | #{job.title}
+                    | at
+                    span.company.ml-1
+                        | #{job.company_name}

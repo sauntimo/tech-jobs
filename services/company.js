@@ -4,12 +4,14 @@ var Company  = require('../models/company');
 module.exports = {
 
     /***
-      *    Async functionto get user's company from db
+      *    Async function to get a company from db
       *    @param company_id mongodb ObjectId of Company
       *    @return wrapper with comapny object
      ***/
 
     "getCompany": async function( company_id ){
+
+        console.log( 'company_id: ' + company_id )
 
         return new Promise( ( resolve, reject ) => {
             
@@ -29,7 +31,7 @@ module.exports = {
             ( company ) => {
                 return {
                     "success" : true,
-                    "msg"     : 'Successfully retreieved company',
+                    "msg"     : 'Successfully retrieved company',
                     "data"    : [ company ]
                 };
             },

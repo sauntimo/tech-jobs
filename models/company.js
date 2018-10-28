@@ -11,7 +11,8 @@ var Company = new Schema({
     "street_address" : String,
     "city"           : String,
     "postcode"       : String,
-    "employees"      : [ObjectId]
+    "employees"      : [ObjectId],
+    "jobs"           : [ObjectId]
 });
 
 module.exports = mongoose.model('company', Company);

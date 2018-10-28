@@ -130,6 +130,7 @@ router.post( '/edit', arr_validators, function( req, res, next ){
             "street_address" : req.body.street_address,
             "city"           : req.body.city,
             "postcode"       : req.body.postcode,
+            // TODO: fix this, should push not set
             "employees"      : [ req.user._id ]
         },
         function ( err, company ){
