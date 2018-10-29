@@ -1,5 +1,16 @@
-
 extends ../layout
+
+block breadcrumb
+    nav.m-3
+        ol.breadcrumb
+            li.breadcrumb-item
+                a( href="/home" )
+                    | Home
+            li.breadcrumb-item
+                a( href="/company/search/" )
+                    | Companies
+            li.breadcrumb-item.active
+                | #{company.name}
 
 block content
 

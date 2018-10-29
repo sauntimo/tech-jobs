@@ -46,7 +46,9 @@ router.get('/new', helper.ensureAuthenticated, async function(req, res, next){
 
 router.get( '/search', helper.ensureAuthenticated, async function(req, res, next){
 
-    var data = {};
+    var data = {
+        breadcrumb_style : 'standard_search'
+    };
     var query = {};
 
     var rst_jobs = await JobService.findJobs( query );
@@ -84,7 +86,8 @@ router.get( '/search/company/:company_id', helper.ensureAuthenticated, async fun
     var jobs = rst_jobs.data;
 
     var data = {
-        title : 'Jobs at ' + company.name,
+        breadcrumb_style : 'company_search',
+        title            : 'Jobs at ' + company.name,
         jobs,
         company
     };

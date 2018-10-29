@@ -1,5 +1,17 @@
 extends ../layout
 
+block breadcrumb
+    nav.m-3
+        ol.breadcrumb
+            li.breadcrumb-item
+                a( href="/home" )
+                    | Home
+            li.breadcrumb-item
+                a( href="/job/search/" )
+                    | Jobs
+            li.breadcrumb-item.active
+                | #{job.title}
+
 block content
 
     h1 #{title}

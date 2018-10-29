@@ -1,5 +1,14 @@
 extends ../layout
 
+block breadcrumb
+    nav.m-3
+        ol.breadcrumb
+            li.breadcrumb-item
+                a( href="/home" )
+                    | Home
+            li.breadcrumb-item.active
+                | Edit Profile
+
 block content
 
     h1.display-4 Edit Profile
