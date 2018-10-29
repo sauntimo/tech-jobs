@@ -9,10 +9,10 @@ body {
 .form_delete_job {
   display: inline !important; }
 
-.job-card {
+.list-card {
   text-decoration: none;
   color: var(--dark); }
-  .job-card:hover {
+  .list-card:hover {
     text-decoration: none;
     color: var(--dark);
     background-color: var(--light); }

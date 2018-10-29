@@ -21,6 +21,6 @@ block content
     h1 Jobs
 
     each job, index in jobs
-        a.card.p-3.mb-3.job-card( href='/job/view/' + job._id )
+        a.card.p-3.mb-3.list-card( href='/job/view/' + job._id )
             h5 #{job.title}
             h6 at #{job.company_name}

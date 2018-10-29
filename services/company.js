@@ -11,8 +11,6 @@ module.exports = {
 
     "getCompany": async function( company_id ){
 
-        console.log( 'company_id: ' + company_id )
-
         return new Promise( ( resolve, reject ) => {
             
             // get the company

@@ -13,9 +13,6 @@ block content
 
     h1 Companies
 
-    ul
-        each company, index in companies
-            li
-                a( href='/company/view/' + company._id )
-                    span.name.mr-1
-                        | #{company.name}
+    each company, index in companies
+        a.card.p-3.mb-3.list-card( href='/company/view/' + company._id )
+            h5 #{company.name}
