@@ -31,16 +31,10 @@ block content
             p.card-text
                 | #{jobs_intro}
             p.card-text    
-                a(
-                    href="/job/search"
-                    class="btn btn-secondary mr-3"
-                )
+                a.btn.btn-secondary.mr-3.mt-3( href="/job/search" )
                     | Search
                 if has_company
-                    a(
-                        href="/job/new"
-                        class="btn btn-secondary mr-3"
-                    )
+                    a.btn.btn-secondary.mr-3.mt-3( href="/job/new" )
                         | Post a job at #{company.name}
 
     .card.mr-3.mb-3
@@ -50,21 +44,12 @@ block content
             p.card-text
                 | #{companies_intro}
             p.card-text    
-                a(
-                    href="/company/search"
-                    class="btn btn-secondary mr-3"
-                )
+                a.btn.btn-secondary.mr-3.mt-3( href="/company/search" )
                     | Search
                 if !has_company
-                    a(
-                        href="/company/new"
-                        class="btn btn-secondary mr-3"
-                    )
+                    a.btn.btn-secondary.mr-3.mt-3( href="/company/new" )
                         | Create
                 if has_company
-                    a(
-                        href="/company/edit/"
-                        class="btn btn-secondary mr-3"
-                    )
+                    a.btn.btn-secondary.mr-3.mt-3( href="/company/edit/" )
                         | Edit #{company.name}
 

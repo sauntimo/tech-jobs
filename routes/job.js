@@ -35,9 +35,9 @@ router.get('/new', helper.ensureAuthenticated, async function(req, res, next){
     };
 
     var data = {
-        "title"        : "Create a new job posting",
+        "title"        : "Post a new job",
         "form_action"  : '/job/new',
-        "form_verb"    : 'Create',
+        "form_verb"    : 'Post',
         job
     };
 

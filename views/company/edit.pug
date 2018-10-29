@@ -1,5 +1,17 @@
 extends ../layout
 
+block breadcrumb
+    nav.m-3
+        ol.breadcrumb
+            li.breadcrumb-item
+                a( href="/home" )
+                    | Home
+            li.breadcrumb-item
+                a( href="/company/search/" )
+                    | Companies
+            li.breadcrumb-item.active
+                | #{company.name}
+
 block content
 
     h1.display-4 #{title}
@@ -76,5 +88,5 @@ block content
         button.btn.btn-primary( type="submit" )
             | #{form_verb} Company
             
-        a.btn.btn-secondary.ml-3( href="/home" )
+        a.btn.btn-secondary.ml-3( href="/company/view/" + company._id )
             | Cancel
