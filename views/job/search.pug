@@ -4,12 +4,23 @@ block content
 
     h1 Jobs
 
-    ul
-        each job, index in jobs
-            li
-                a( href='/job/view/' + job._id )
-                    span.title.mr-1
-                        | #{job.title}
-                    | at
-                    span.company.ml-1
-                        | #{job.company_name}
+    
+    each job, index in jobs
+        a.card.p-3.mb-3.job-card( href='/job/view/' + job._id )
+            h5 #{job.title}
+            h6 at #{job.company_name}
+           
+
+            //- p.card-text
+            //-     a.btn.btn-primary.float-right( href='/job/view/' + job._id )
+            //-         | Go
+            //-         span.oi.oi-arrow-thick-right.ml-2( title="arrow-thick-right" aria-hidden="true" )
+
+
+
+            //- a( href='/job/view/' + job._id )
+            //-     span.title.mr-1
+            //-         | #{job.title}
+            //-     | at
+            //-     span.company.ml-1
+            //-         | #{job.company_name}

@@ -2,28 +2,32 @@ extends ../layout
 
 block content
 
-    h1 #{job.title}
-    h3 At #{job.company_name}
+    .card.p-3.mt-3.mb-3
+        h1 #{job.title}
+        h3 At #{job.company_name}
 
-    p Salary #{job.salary_min} - #{job.salary_max}
+        p Salary #{job.salary_min} - #{job.salary_max}
 
-    h4 Role description
-    p #{job.description}
+        h4 Role description
+        p #{job.description}
 
-    h4 Desired experience
-    p #{job.experience}
+        h4 Desired experience
+        p #{job.experience}
 
-    h4 Technologies used
-    .tech
-        each item in job.tech.split( ',' )
-            span.badge.badge-secondary.p-2.mr-2.mb-2
-                | #{item}
-    
-    h4 Deadline for applications
-    p #{job.deadline}
+        h4 Technologies used
+        .tech
+            each item in job.tech.split( ',' )
+                span.badge.badge-secondary.p-2.mr-2.mb-2
+                    | #{item}
+        
+        h4 Deadline for applications
+        p #{job.deadline}
 
     .card.p-3.mb-3
-        h4.card-title Company Profile: #{company.name}
+        h4.card-title 
+            | Company Profile: 
+            a( href="/company/view/" + company._id )
+                | #{company.name}
         p.card-text
             b Website: 
             a( href=company.website )
@@ -39,10 +43,13 @@ block content
                 | #{company.city}
                 br
                 | #{company.postcode}
+        p.card-text
+            a( href="/job/search/company/" + company._id )
+                | View all available jobs at #{company.name}
                 
 
     if editable
-        .card.p-3
+        .card.p-3.mb-3
             h4.card-title Administration
             p.card-text
                 | Because you are an employee of the company who is advertising this position, you can edit it.
