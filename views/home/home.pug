@@ -2,7 +2,14 @@ extends ../layout
 
 block content
 
-    h5.display-5 Hi, #{user.display_name}
+    h5.display-5 Hi, 
+        if user.display_name
+            | #{user.display_name}
+        else if user.gh_name
+            | #{user.gh_name}
+        else
+            | #{user.gh_login}
+
 
     .card.mr-3.mb-3
         .card-body
