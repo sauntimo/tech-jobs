@@ -15,6 +15,7 @@ var homeRouter      = require('./routes/home');
 var profileRouter   = require('./routes/profile');
 var companyRouter   = require('./routes/company');
 var jobRouter       = require('./routes/job');
+var logoutRouter    = require('./routes/logout');
 
 var app = express();
 
@@ -57,6 +58,7 @@ app.use('/home', homeRouter);
 app.use('/profile', profileRouter);
 app.use('/company', companyRouter);
 app.use('/job', jobRouter);
+app.use('/logout', logoutRouter);
 
 
 // catch 404 and forward to error handler
