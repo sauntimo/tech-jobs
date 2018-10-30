@@ -11,6 +11,14 @@ body {
     .container {
       margin-top: 75px; } }
 
+.logout-link {
+  color: var(--dark); }
+  .logout-link:hover {
+    text-decoration: none;
+    color: var(--dark); }
+  .logout-link .oi {
+    margin-bottom: 3px; }
+
 .jumbotron .login img {
   padding-right: 10px;
   margin-right: 10px;
