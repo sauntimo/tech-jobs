@@ -16,16 +16,21 @@ html
         href="https://cdnjs.cloudflare.com/ajax/libs/open-iconic/1.1.1/font/css/open-iconic-bootstrap.css"
     )
   body
-    block nav
-        .navbar.navbar-expand-lg.navbar-light.bg-light
-            a.navbar-brand( href="/home" )
-                | Tech Jobs Bristol
-            h5
-                span.badge.badge-danger
-                    | BETA - not real data
-
-
-    block breadcrumb
-
     .container
+
+        block nav
+            .navbar.fixed-top.navbar-expand-lg.navbar-light.bg-light
+                .group
+                    a.navbar-brand.float-left( href="/home" )
+                        | Bristol Tech Jobs
+                    h5.my-2.float-left
+                        span.badge.badge-danger
+                            | BETA - not real data
+                a.navbar.float-right.p-0.my-2( href="/logout" )
+                    span.oi.oi-account-logout.mr-2( title="account logout" )
+                    | Logout            
+
+
+        block breadcrumb
+
         block content

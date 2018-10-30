@@ -3,7 +3,7 @@ var router = express.Router();
 var passportGithub = require('../auth/github');
 
 var data = {
-	"title"       : "Tech Jobs Bristol",
+	"title"       : "Bristol Tech Jobs",
 	"intro"       : "A transparent jobs board by developers for developers.",
 	"explanation" : `No recuitment agencies, ever. Just companies with tech jobs 
 		and people looking for them. Simple.`,
