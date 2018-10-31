@@ -63,6 +63,8 @@ router.get( '/search', helper.ensureAuthenticated, async function(req, res, next
 
 })
 
+
+// search jobs by companies offering them
 router.get( '/search/company/:company_id', helper.ensureAuthenticated, async function(req, res, next){
 
     var rst_company = await CompanyService.getCompany( req.params.company_id );
@@ -90,6 +92,31 @@ router.get( '/search/company/:company_id', helper.ensureAuthenticated, async fun
         title            : 'Jobs at ' + company.name,
         jobs,
         company
+    };
+
+    res.render( 'job/search', data );
+
+})
+
+
+// search jobs by technologies involved
+router.get( '/search/tech/:tech', helper.ensureAuthenticated, async function(req, res, next){
+
+    var query = { "tech": { "$regex": req.params.tech, "$options": "i" } };
+
+    var rst_jobs = await JobService.findJobs( query );
+
+    // redirect on fail TODO: feedback
+    if( !rst_jobs.success ){
+        res.redirect( '/home' );
+    }
+
+    var jobs = rst_jobs.data;
+
+    var data = {
+        breadcrumb_style : 'tech_search',
+        title            : 'Jobs involving ' + req.params.tech,
+        jobs
     };
 
     res.render( 'job/search', data );
