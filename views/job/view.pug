@@ -27,10 +27,12 @@ block content
         p #{job.experience}
 
         h4 Technologies used
+        small.mb-2 click on items to search for jobs involving that technology 
         .tech
-            each item in job.tech.split( ',' )
-                span.badge.badge-secondary.p-2.mr-2.mb-2
-                    | #{item}
+            each technology in job.tech.split( ',' )
+                a( href="/job/search/tech/" + technology  )
+                    span.badge.badge-secondary.p-2.mr-2.mb-2
+                        | #{technology}
         
         h4 Deadline for applications
         p #{job.deadline}

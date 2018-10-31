@@ -13,12 +13,19 @@ block breadcrumb
                 li.breadcrumb-item
                     a( href="/company/view/" + company._id )
                         | #{company.name}
-            li.breadcrumb-item
-                | Jobs
+            if breadcrumb_style !== 'tech_search'
+                li.breadcrumb-item
+                    | Jobs
+            if breadcrumb_style === 'tech_search'
+                li.breadcrumb-item
+                    a( href="/job/search/" )
+                        | Jobs
+                li.breadcrumb-item
+                    | #{technology}
 
 block content
 
-    h1.display-4 Jobs
+    h1.display-4 #{title}
 
     each job, index in jobs
         a.card.p-3.mb-3.list-card( href='/job/view/' + job._id )

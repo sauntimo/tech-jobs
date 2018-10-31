@@ -47,7 +47,8 @@ router.get('/new', helper.ensureAuthenticated, async function(req, res, next){
 router.get( '/search', helper.ensureAuthenticated, async function(req, res, next){
 
     var data = {
-        breadcrumb_style : 'standard_search'
+        breadcrumb_style : 'standard_search',
+        title            : 'Jobs'
     };
     var query = {};
 
@@ -116,6 +117,7 @@ router.get( '/search/tech/:tech', helper.ensureAuthenticated, async function(req
     var data = {
         breadcrumb_style : 'tech_search',
         title            : 'Jobs involving ' + req.params.tech,
+        technology       : req.params.tech,
         jobs
     };
 
